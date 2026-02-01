@@ -19,7 +19,7 @@ function addEntryToWall(item) {
 
     const name = document.createElement("p")
     name.className = "wall-name";
-    name.textContent = item.wall_name;
+    name.textContent = item.wall_name + ":";
 
     const year = document.createElement("p")
     year.className = "wall-year";
