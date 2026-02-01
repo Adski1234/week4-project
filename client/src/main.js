@@ -1,4 +1,5 @@
 const form = document.getElementById("form");
+const wallDiv = document.getElementById("wall");
 
 const API_URL = "http://localhost:9010";
 
@@ -6,6 +7,16 @@ async function fetchWall() {
     const response = await fetch(`${API_URL}/wall`);
     const data = await response.json();
     console.log("Wall data:", data);
+
+    for (const item of data) {
+        addEntryToWall(item);
+    }
+}
+
+function addEntryToWall(item) {
+    const entry = document.createElement("div");
+    entry.textContent = `${item.wall_name} - ${item.year}`;
+    wallDiv.appendChild(entry);
 }
 
 form.addEventListener("submit", async (event) => {
@@ -21,4 +32,16 @@ form.addEventListener("submit", async (event) => {
         body: JSON.stringify({ wall_name, year }),
 
     });
-})
+
+    if (!response.ok) {
+        alert("Post failed");
+        return;
+    }
+
+    const newEntry = await response.json();
+
+    addEntryToWall(newEntry); 
+    form.reset();
+});
+
+fetchWall();
