@@ -15,7 +15,19 @@ async function fetchWall() {
 
 function addEntryToWall(item) {
     const entry = document.createElement("div");
-    entry.textContent = `${item.wall_name} - ${item.year}`;
+    entry.className= "wall-entry";
+
+    const name = document.createElement("p")
+    name.className = "wall-name";
+    name.textContent = item.wall_name;
+
+    const year = document.createElement("p")
+    year.className = "wall-year";
+    year.textContent = item.year;
+
+    entry.appendChild(name);
+    entry.appendChild(year);
+
     wallDiv.appendChild(entry);
 }
 
