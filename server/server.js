@@ -15,9 +15,16 @@ const db = new pg.Pool({
     connectionString: process.env.DB_CONN
 })
 
-app.get('/wall', (req, res) => {
-    res.status(200).json('the root of all evil')
-})
+app.get('/wall', async(req, res) => {
+    try {
+        const result = await db.query("SELECT * FROM wall ORDER BY id DESC;");
+        res.status(200).json(result.rows)
+    }   catch (error) {
+        console.log(error);
+        res.status(500).json({error: "Database error"});
+    }
+});
+
 
 app.listen(9010, () => {
     console.log('Server started on http://localhost:9010')
