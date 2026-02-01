@@ -1,1 +1,59 @@
+body {
+    margin: 0;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+}
 
+.container {
+    max-width:600px;
+    margin: 0 auto;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+#form input,
+#form button {
+    padding: 12px;
+    font-size: 16px;
+}
+
+#form button {
+    cursor: pointer;
+}
+
+#wall {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wall-entry {
+    padding: 12px;
+    border: 1px solid #ccc;
+
+}
+
+.wall-name,
+.wall-year {
+    margin: 0;
+}
+
+@media (min-width: 600px) {
+    #form {
+        flex-direction: row;
+        align-items:center
+    }
+
+    #form input {
+        flex: 1
+    }
+
+    #form button {
+        width: 120px;
+    }
+}
