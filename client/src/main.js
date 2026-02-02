@@ -1,7 +1,7 @@
 const form = document.getElementById("form");
 const wallDiv = document.getElementById("wall");
 
-const API_URL = "https://https://week4-project-server.onrender.com";
+const API_URL = "https://week4-project-server.onrender.com";
 
 async function fetchWall() {
     const response = await fetch(`${API_URL}/wall`);
@@ -12,7 +12,6 @@ async function fetchWall() {
         addEntryToWall(item);
     }
 }
-
 function addEntryToWall(item) {
     const entry = document.createElement("div");
     entry.className= "wall-entry";
@@ -46,7 +45,8 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (!response.ok) {
-        alert("Post failed");
+        const text = await response.text();
+        alert(`Post failed (${response.status}): ${text}`);
         return;
     }
 
