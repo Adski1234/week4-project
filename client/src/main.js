@@ -1,7 +1,7 @@
 const form = document.getElementById("form");
 const wallDiv = document.getElementById("wall");
 
-const API_URL = "http://localhost:9010";
+const API_URL = "https://https://week4-project-server.onrender.com";
 
 async function fetchWall() {
     const response = await fetch(`${API_URL}/wall`);
