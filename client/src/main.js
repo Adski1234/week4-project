@@ -4,13 +4,12 @@ const wallDiv = document.getElementById("wall");
 const API_URL = "https://week4-project-server.onrender.com";
 
 async function fetchWall() {
-    const response = await fetch(`${API_URL}/wall`);
+    const response = await fetch(new URL("/wall", API_URL));
     const data = await response.json();
+    wallDiv.innerHTML = "";
+    data.forEach(addEntryToWall);
     console.log("Wall data:", data);
 
-    for (const item of data) {
-        addEntryToWall(item);
-    }
 }
 function addEntryToWall(item) {
     const entry = document.createElement("div");
@@ -37,16 +36,19 @@ form.addEventListener("submit", async (event) => {
     const wall_name =formData.get("wall_name");
     const year = formData.get("year");
 
-    const response = await fetch(`${API_URL}/wall`, {
+    const response = await fetch(new URL("/wall", API_URL), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ wall_name, year }),
 
     });
 
+    const payload = await response.json();
+    
+
     if (!response.ok) {
-        const text = await response.text();
-        alert(`Post failed (${response.status}): ${text}`);
+        console.error(payload);
+        alert(payload.error || "Post failed");
         return;
     }
 
