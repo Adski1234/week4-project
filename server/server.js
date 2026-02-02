@@ -47,7 +47,7 @@ app.post("/wall", async (req, res) => {
 
 
 
-const PORT = process.env.PORT || 9010;
-app.listen(9010, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 })
